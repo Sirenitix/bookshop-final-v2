@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-16">
+        <createSequence sequenceName="seq_review_like" startValue="1001"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-29">
+        <createTable tableName="book_review_like">
+            <column name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="value" type="SMALLINT"/>
+            <column name="review_id" type="INT"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-44">
+        <addPrimaryKey columnNames="id" constraintName="book_review_like_pkey" tableName="book_review_like"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-51">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="book_review_like" constraintName="fkbh4qufg71ntnx2v11gy8ldc5f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-64">
+        <addForeignKeyConstraint baseColumnNames="review_id" baseTableName="book_review_like" constraintName="fkl5konyr7ye2i76wv92vf9w6y2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="book_review"/>
+    </changeSet>
+    <changeSet id="likes-data" author="owner">
+        <sqlFile path="db/changelog/bookReviewLike/insert_book_review_like.sql"/>
+    </changeSet>
+</databaseChangeLog>

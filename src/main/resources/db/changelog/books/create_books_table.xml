@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-5">
+        <createSequence sequenceName="seq_book_id" startValue="1001"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-30">
+        <createTable tableName="books">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="books_pkey"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="is_bestseller" type="INT"/>
+            <column name="discount" type="FLOAT8"/>
+            <column name="price" type="INT"/>
+            <column name="pub_date" type="date"/>
+            <column name="slug" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="books-data" author="owner">
+        <sqlFile path="db/changelog/books/insert_books.sql"/>
+    </changeSet>
+</databaseChangeLog>

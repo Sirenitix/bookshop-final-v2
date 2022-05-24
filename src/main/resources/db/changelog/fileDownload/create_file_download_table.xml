@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-8">
+        <createSequence sequenceName="seq_file_download" startValue="1001"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-33">
+        <createTable tableName="file_download">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="file_download_pkey"/>
+            </column>
+            <column defaultValueNumeric="1" name="count" type="INT"/>
+            <column name="book_id" type="INT"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-56">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="file_download" constraintName="fkelm7ats7ftrgyvfn8a1xwhin9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-69">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="file_download" constraintName="fkswtliibr0mrua60wbmecwlfyo" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet id="download-data" author="owner">
+        <sqlFile path="db/changelog/fileDownload/insert_file_download.sql"/>
+    </changeSet>
+</databaseChangeLog>

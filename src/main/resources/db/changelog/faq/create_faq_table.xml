@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-7">
+        <createSequence sequenceName="faq_id_seq"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-32">
+        <createTable tableName="faq">
+            <column autoIncrement="true" name="id" type="SERIAL">
+                <constraints primaryKey="true" primaryKeyName="faq_pkey"/>
+            </column>
+            <column name="answer" type="TEXT"/>
+            <column name="question" type="VARCHAR(255)"/>
+            <column defaultValueNumeric="0" name="sort_index" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="faq-data" author="owner">
+        <sqlFile path="db/changelog/faq/insert_faq.sql"/>
+    </changeSet>
+</databaseChangeLog>

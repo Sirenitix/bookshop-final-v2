@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-11">
+        <createSequence sequenceName="seq_balance" startValue="1001"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-20">
+        <createTable tableName="balance_transaction">
+            <column name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="value" type="INT"/>
+            <column name="book_id" type="INT"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-39">
+        <addPrimaryKey columnNames="id" constraintName="balance_transaction_pkey" tableName="balance_transaction"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-55">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="balance_transaction" constraintName="fke2aw1i7lhjey4rskq9qhed9qs" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-66">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="balance_transaction" constraintName="fkndi1dijwreoyd8stngrabtx8m" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="transactions-data" author="owner">
+        <sqlFile path="db/changelog/balanceTransaction/insert_balance_transaction.sql"/>
+    </changeSet>
+</databaseChangeLog>

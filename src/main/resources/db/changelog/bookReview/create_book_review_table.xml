@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-14">
+        <createSequence sequenceName="seq_bok_review" startValue="1001"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-28">
+        <createTable tableName="book_review">
+            <column name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="TEXT"/>
+            <column name="time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="book_id" type="INT"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-45">
+        <addPrimaryKey columnNames="id" constraintName="book_review_pkey" tableName="book_review"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-60">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book_review" constraintName="fkgme5o68sylsmw5hw0ys2x8iw8" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-67">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="book_review" constraintName="fkntncp0b191bex8jkm3vy3l13x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="reviews-data" author="owner">
+        <sqlFile path="db/changelog/bookReview/insert_book_review.sql"/>
+    </changeSet>
+</databaseChangeLog>

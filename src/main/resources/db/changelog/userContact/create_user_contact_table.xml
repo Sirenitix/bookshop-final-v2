@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-12">
+        <createSequence sequenceName="seq_bok_contact" startValue="1001"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-37">
+        <createTable tableName="user_contact">
+            <column name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approved" type="SMALLINT"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="code_time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="code_trials" type="INT"/>
+            <column name="contact" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="user_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-46">
+        <addPrimaryKey columnNames="id" constraintName="user_contact_pkey" tableName="user_contact"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-62">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_contact" constraintName="fkigqfory4r46pqd0sl4csnwp72" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="contactsOfUser-data" author="owner">
+        <sqlFile path="db/changelog/userContact/insert_user_contact.sql"/>
+    </changeSet>
+</databaseChangeLog>

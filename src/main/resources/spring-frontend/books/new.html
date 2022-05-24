@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>New book</title>
+    <meta name="description" content="Описание страницы"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <link href="favicon.ico" rel="shortcut icon"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-SemiBold.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Light.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Medium.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-ExtraBold.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/assets/css/fonts.min.css?v=09585989"/>
+    <link rel="stylesheet" href="/assets/css/basic.min.css?v=09585989"/>
+    <link rel="stylesheet" href="/assets/css/extra.min.css?v=09585989"/>
+    <link rel="stylesheet" href="/assets/css/AddNewBookStyle.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<header th:replace="~{fragments/header_auth_fragment :: headFragment}"></header>
+<div class="Middle">
+    <div class="wrap">
+        <main class="Middle-main">
+            <div>
+                <h2>Добавить новую книгу</h2>
+                <form class="newBook_form" th:action="@{/books/new}" method="post"
+                      name="newBook_form" enctype="multipart/form-data" th:object="${newBook}">
+                    <ul>
+                        <li>
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" th:field="*{title}" placeholder="title"/>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('title')}">
+                            <span class="field_error" th:errors="*{title}"></span>
+                        </li>
+                        <li>
+                            <label for="author">Author:</label>
+                            <input type="text" id="author" name="author" th:field="*{author}" placeholder="author1, author2 ..."/>
+                            
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('author')}">
+                            <span class="field_error" th:errors="*{author}"></span>
+                        </li>
+                        <li>
+                            <label for="genre">Genre:</label>
+                            <input type="text" id="genre" name="genre" th:field="*{genre}" placeholder="genre1, genre2 ..."/>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('genre')}">
+                            <span class="field_error" th:errors="*{genre}"></span>
+                        </li>
+                        <li>
+                            <label for="tag">Tag:</label>
+                            <input type="text" id="tag" name="tag" th:field="*{tag}" placeholder="tag1, tag2 ..."/>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('tag')}">
+                            <span class="field_error" th:errors="*{tag}"></span>
+                        </li>
+                        <li>
+                            <label for="price">Price RUB:</label>
+                            <input type="number" id="price" name="price" th:field="*{price}" placeholder="10-5000"/>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('price')}">
+                            <span class="field_error" th:errors="*{price}"></span>
+                        </li>
+                        <li>
+                            <label for="discount">Discount %:</label>
+                            <input type="number" id="discount" name="discount" th:field="*{discount}" placeholder="0-99"/>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('discount')}">
+                            <span class="field_error" th:errors="*{discount}"></span>
+                        </li>
+                        <li>
+                            <label for="description">Description:</label>
+                            <textarea name="description" id="description" cols="40" rows="6" th:field="*{description}"
+                                      placeholder="Description of book"></textarea>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('description')}">
+                            <span class="field_error" th:errors="*{description}"></span>
+                        </li>
+                        <li>
+                            <label for="image">Image of book:</label>
+                            <input id="image" type="file" name="image" th:field="*{image}" required="required"/>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('image')}">
+                            <span class="field_error" th:errors="*{image}"></span>
+                        </li>
+                        <li>
+                            <label for="fileBook">File of book:</label>
+                            <input id="fileBook" type="file" name="fileBook" th:field="*{fileBook}" required="required"/>
+                        </li>
+                        <li class="li_error" th:if="${#fields.hasErrors('fileBook')}">
+                            <span class="field_error" th:errors="*{fileBook}"></span>
+                            <span class="field_error" th:if="${fileError}">file must be with extension .pdf, .epub or .fb2</span>
+                        </li>
+                    </ul>
+                    <div id="btn_center">
+                        <button class="submit" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+<footer th:replace="~{fragments/footer_fragment :: footFragment}"></footer>
+<script src="/assets/js/scripts.min.js?v=09585989"></script>
+</body>
+</html>

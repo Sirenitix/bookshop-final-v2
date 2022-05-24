@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="owner" id="1626976870524-22">
+        <createTable tableName="book2genre">
+            <column name="genre_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-40">
+        <addPrimaryKey columnNames="genre_id, book_id" constraintName="book2genre_pkey" tableName="book2genre"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-53">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book2genre" constraintName="fkceqa97sssb6d5xg7n8jtt5gqb" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet author="owner" id="1626976870524-65">
+        <addForeignKeyConstraint baseColumnNames="genre_id" baseTableName="book2genre" constraintName="fknb5tbib0eo6i1qhmy62b78b3o" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="genres"/>
+    </changeSet>
+    <changeSet id="genresOfBook-data" author="owner">
+        <sqlFile path="db/changelog/bookGenre/insert_book2genre.sql"/>
+    </changeSet>
+</databaseChangeLog>

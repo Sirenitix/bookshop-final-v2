@@ -1,0 +1,16 @@
+.user-info {
+    display: inline-table;
+    margin-inline: 45px;
+}
+
+#remove, #blocked {
+    color: red;
+}
+
+.list-info {
+    margin-top: 10px;
+}
+
+.blocked {
+    color: #ff8e1c;
+}

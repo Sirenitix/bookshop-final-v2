@@ -1,0 +1,176 @@
+<!--END-->
+<!--END--><!DOCTYPE html><!--[if IE 7]>
+<html class="ie7" lang="ru">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie8" lang="ru">
+<![endif]-->
+<!--[if IE 9]>
+<html class="ie9" lang="ru">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--<![endif]-->
+<head>
+    <title>Тут название страницы написать</title>
+    <meta name="description" content="Описание страницы"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <!--meta( http-equiv="cache-control" content="no-cache")-->
+    <!--meta( http-equiv="expires" content="0")-->
+    <!--link(rel="preload" href="assets/css/extra.min.css?v=" + version as="style" crossorigin="anonymous")-->
+    <link href="favicon.ico" rel="shortcut icon"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-SemiBold.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Light.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Medium.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-ExtraBold.woff2" as="font" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/assets/css/fonts.min.css?v=93601584"/>
+    <link rel="stylesheet" href="/assets/css/basic.min.css?v=93601584"/>
+    <link rel="stylesheet" href="/assets/css/extra.min.css?v=93601584"/>
+    <link rel="stylesheet" href="/assets/css/EditDescriptionStyle.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body class="Site">
+<!--if lt IE 8
+p.error-browser
+    | Ваш браузер&nbsp;
+    em устарел!&nbsp;
+    a(href="http://browsehappy.com/") Выберите новую версию
+        +s
+        | браузера здесь&nbsp;
+    | для правильного отображения сайта.
+-->
+<header sec:authorize="!isAuthenticated()" th:replace="~{fragments/header_fragment :: headFragment}"></header>
+<header sec:authorize="isAuthenticated()" th:replace="~{fragments/header_auth_fragment :: headFragment}"></header>
+<div class="Middle">
+    <div class="wrap">
+        <main class="Middle-main">
+            <ul class="breadcrumbs">
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+                </li>
+                <li class="breadcrumbs-item"><a href="/authors/index.html" th:href="@{/authors}">Авторы</a>
+                </li>
+                <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="${author.name}">Борис Васильевич Бедный</span>
+                </li>
+            </ul>
+            <h1 class="Middle-title" th:text="${author.name}">Борис Васильевич Бедный
+            </h1>
+            <article class="Article">
+                <div class="sdf">
+                </div>
+                <div class="Spoiler">
+                    <div class="Spoiler-visible">
+                        <form sec:authorize="hasAuthority('ADMIN')" id="imgForm" method="POST"
+                              enctype="multipart/form-data" action="#"
+                              th:action="${'/authors/' + author.slug + '/photo/save'}">
+                            <div class="pict pict_left" id="uploadButton"><img th:src="${author.photo}"
+                                                             src="/assets/img/content/main/card.jpg" alt="card.jpg"/>
+                            </div>
+                            <input type="file" name="file" id="dialog" style="display: none" accept="image/*"/>
+                        </form>
+                        <div th:text="${author.description}">
+                            <h2>Биография
+                            </h2>
+                            <p>Борис Бедный родился в семье учителя в 1916 году в станице Ярославская Краснодарского
+                                края. Окончил Майкопский лесной техникум и был послан учиться в Ленинградскую
+                                лесотехническую академию. Стал специалистом по сплаву леса и приехал в Республику Коми,
+                                работать на сплавных предприятиях.
+                            </p>
+                            <p>В октябре 1941 года Борис пошёл на фронт, а в августе 1942 года попал в плен, и находился
+                                там до апреля 1945 года.
+                            </p>
+                        </div>
+                    </div>
+                    <div sec:authorize="hasAuthority('ADMIN')" id="editInput">
+                        <p>Отредактируйте</p>
+                        <form class="form" th:action="@{'/authors/edit/' + ${author.slug}}" method="post">
+                            <div class="form-group">
+                                    <textarea class="form-textarea" name="editText" id="edit"
+                                              data-validate="require" th:text="${author.description}"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn_warning" type="submit">Сохранить
+                                </button>
+                            </div>
+                        </form>
+                        <span id="editInput__close" class="close">❎</span>
+                    </div>
+                    <div id="editOverlay"></div>
+                    <div class="Spoiler-hide">
+                    </div>
+                    <div class="Spoiler-footer">
+                        <button class="Spoiler-trigger btn btn_primary btn_nr" type="button" data-showtext="Свернуть"
+                                data-hidetext="Показать полностью">
+                        </button>
+                        <div sec:authorize="hasAuthority('ADMIN')" style="margin-left: 25px"
+                             class="ProductCard-cartElement">
+                            <a id="btn_edit" href="#" class="btn btn_primary btn_nr">
+                                <span class="btn-content">Редактировать</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <div class="Section">
+                <header class="Section-header">
+                    <h2 class="Section-title"
+                        th:text="${booksOfAuthor.isEmpty() ? 'У автора нет книг' : 'Книги автора'}">Книги автора
+                    </h2>
+                </header>
+                <div class="Slider Slider_carousel" th:unless="${booksOfAuthor.isEmpty()}">
+                    <div class="Slider-box Cards">
+                        <th:block th:replace="~{fragments/books_list :: bookListCarousel(${booksOfAuthor})}"/>
+                        <div class="Slider-item">
+                            <div class="Slider-content">
+                                <div class="Card">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Slider-item">
+                            <div class="Slider-content">
+                                <div class="Card">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Slider-item">
+                            <div class="Slider-content">
+                                <div class="Card">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Slider-item">
+                            <div class="Slider-content">
+                                <div class="Card">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Slider-item">
+                            <div class="Slider-content">
+                                <div class="Card">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if="${booksOfAuthor.size() > 5}" class="Slider-navigateWrap">
+                        <div class="Slider-navigate">
+                        </div>
+                    </div>
+                </div>
+                <footer th:unless="${booksOfAuthor.isEmpty()}" class="Section-footer"><a class="Author-books"
+                                                                                         th:href="@{'/books/author/' + ${author.slug}}"
+                                                                                         href="/books/author.html">Все
+                    книги автора<span
+                            class="Author-amount" th:text="${'(' + booksOfAuthor.size() + ')'}">(55)</span></a>
+                </footer>
+            </div>
+        </main>
+    </div>
+</div>
+<footer th:replace="~{fragments/footer_fragment :: footFragment}"></footer>
+<script src="/assets/plg/jQuery/jquery-3.5.1.min.js"></script>
+<script src="/assets/js/UploadNewImageScript.js"></script>
+<script src="/assets/js/EditDescriptionScript.js"></script>
+<script src="/assets/js/scripts.min.js?v=93601584"></script>
+</body>
+</html>

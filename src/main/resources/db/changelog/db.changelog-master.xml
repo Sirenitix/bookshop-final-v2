@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="db/changelog/users/create_users_table.xml"/>
+    <include file="db/changelog/authors/create_authors_table.xml"/>
+    <include file="db/changelog/books/create_books_table.xml"/>
+    <include file="db/changelog/genres/create_genres_table.xml"/>
+    <include file="db/changelog/tags/create_tags_table.xml"/>
+    <include file="db/changelog/document/create_document_table.xml"/>
+    <include file="db/changelog/faq/create_faq_table.xml"/>
+    <include file="db/changelog/message/create_message_table.xml"/>
+    <include file="db/changelog/bookFile/create_book_file_table.xml"/>
+    <include file="db/changelog/bookReview/create_book_review_table.xml"/>
+    <include file="db/changelog/bookReviewLike/create_book_review_like_table.xml"/>
+    <include file="db/changelog/bookRating/create_book_rating_table.xml"/>
+    <include file="db/changelog/fileDownload/create_file_download_table.xml"/>
+    <include file="db/changelog/bookUserType/create_book2user_type_table.xml"/>
+    <include file="db/changelog/bookUser/create_book2user_table.xml"/>
+    <include file="db/changelog/bookAuthor/create_book2author_table.xml"/>
+    <include file="db/changelog/bookTag/create_book2tag_table.xml"/>
+    <include file="db/changelog/bookGenre/create_book2genre_table.xml"/>
+    <include file="db/changelog/balanceTransaction/create_balance_transaction_table.xml"/>
+    <include file="db/changelog/userContact/create_user_contact_table.xml"/>
+    <include file="db/changelog/userRole/create_user_role_table.xml"/>
+</databaseChangeLog>
