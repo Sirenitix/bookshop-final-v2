@@ -33,7 +33,7 @@ public class BookNewDto {
 
     @NotNull(message = "price must be set")
     @Min(value = 10, message = "price must be between 10 and 5000")
-    @Max(value = 5000, message = "price must be between 10 and 5000")
+    @Max(value = 100000, message = "price must be between 10 and 5000")
     private Integer price;
 
     @Min(value = 0, message = "discount must be between 0 and 99")
