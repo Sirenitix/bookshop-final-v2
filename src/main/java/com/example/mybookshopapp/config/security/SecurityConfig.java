@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         String signInUrl = "/signin";
         http
                 .csrf().disable()
+                .cors().and()
                 .authorizeRequests()
                 .antMatchers("/my", "/profile", "/pay", "/viewed").authenticated()
                 .antMatchers("/users/**", "/books/new").hasAuthority("ADMIN")

@@ -199,9 +199,11 @@ public class BooksController {
                               BindingResult bindingResult,
                               Model model) throws IOException, NoSupportFileException {
         if (bindingResult.hasErrors()) {
+            System.out.println(newBook.getAuthor() + "--------------------------");
             model.addAttribute("newBook", newBook);
             return "books/new";
         }
+        System.out.println(newBook.getAuthor() + "++++++++++++++++++++++++++++++++");
         Book book = bookService.getBookFromBookNewDto(newBook);
         return REDIRECT_BOOKS_URL + book.getSlug();
     }

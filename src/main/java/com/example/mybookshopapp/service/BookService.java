@@ -265,7 +265,7 @@ public class BookService {
         book.setPriceOld(newBookDto.getPrice());
         book.setPrice(newBookDto.getDiscount() == null ? 0 : newBookDto.getDiscount() / 100.0);
         book.setSlug(generatorSlug.generateSlug("book"));
-
+        System.out.println("hmm?"+book.getSlug());
         BookFile bookFile = resourceStorage.uploadFile(newBookDto.getFileBook());
         book.setBookFileList(Collections.singletonList(bookFile));
 
@@ -286,7 +286,7 @@ public class BookService {
         List<Author> authorList = authorService.getAuthorsForNewBook(newBookDto.getAuthor());
 
         authorService.setBookAuthors(book, authorList);
-
+        System.out.println(book.getSlug() + "asdasda");
         return book;
     }
 
