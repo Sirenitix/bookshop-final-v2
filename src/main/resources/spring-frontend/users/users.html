@@ -37,7 +37,7 @@
                     <tr>
                         <td th:text="${user.name}"></td>
                         <td th:text="${user.getRolesString()}"></td>
-                        <td th:text="${'₽ ' + user.balance}"></td>
+                        <td th:text="${user.balance + 'тг'}"></td>
                         <td th:text="${user.getFormatTime()}"></td>
                         <td><a th:href="@{'/users/' + ${user.hash}}" th:text="'Подробнее'"></a></td>
                     </tr>
