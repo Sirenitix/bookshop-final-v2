@@ -57,8 +57,8 @@
                             <span class="field_error" th:errors="*{tag}"></span>
                         </li>
                         <li>
-                            <label for="price">Price RUB:</label>
-                            <input type="number" id="price" name="price" th:field="*{price}" placeholder="10-5000"/>
+                            <label for="price">Price Tenge:</label>
+                            <input type="number" id="price" name="price" th:field="*{price}" placeholder="10-100000"/>
                         </li>
                         <li class="li_error" th:if="${#fields.hasErrors('price')}">
                             <span class="field_error" th:errors="*{price}"></span>
