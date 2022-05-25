@@ -11,15 +11,13 @@
 <!--[if gt IE 9]><!-->
 <html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<![endif]-->
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bookshop</title>
     <meta name="description" content="Описание страницы"/>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <!--meta( http-equiv="cache-control" content="no-cache")-->
-    <!--meta( http-equiv="expires" content="0")-->
-    <!--link(rel="preload" href="assets/css/extra.min.css?v=" + version as="style" crossorigin="anonymous")-->
-    <link href="favicon.ico" rel="shortcut icon"/>
+    <link href="../favicon.ico" rel="shortcut icon"/>
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-SemiBold.woff2" as="font" crossorigin="anonymous"/>
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Light.woff2" as="font" crossorigin="anonymous"/>
     <link rel="preload" href="/assets/fonts/Montserrat/Montserrat-Medium.woff2" as="font" crossorigin="anonymous"/>
@@ -49,7 +47,7 @@
             <ul class="breadcrumbs">
                 <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}">Книги</a>
+                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/spring-frontend/genres}">Книги</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current" th:text="${slugBook.title}">
                     <span>Мара и морок</span>

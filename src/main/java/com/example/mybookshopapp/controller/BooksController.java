@@ -83,7 +83,7 @@ public class BooksController {
         Book book = bookRepository.findBookBySlug(slug);
         if (book == null) {
             model.addAttribute("bookRemoved", "Book removed");
-            return "/books/slug";
+            return "books_new/slug";
         }
         if (user != null) {
             currentUser = user.getBookstoreUser();
@@ -113,7 +113,7 @@ public class BooksController {
         model.addAttribute("authorsOfBook", authorService.getAuthorsByBook(book));
         model.addAttribute("reviewsOfBook", bookReviewList);
         model.addAttribute("statusOfSlugBook", bookUserService.getStatusOfBookForUser(book, currentUser).toString());
-        return "/books/slug";
+        return "books_new/slug";
     }
 
     @PostMapping("/{slug}/img/save")
