@@ -94,7 +94,7 @@ public class MainPageController {
             List<BookWithAuthorsDto> bookList = bookService.getPageOfGoogleBooksApiSearchResult(searchWordDto.getExample(), 0, 5);
             model.addAttribute("searchWordDto", searchWordDto);
             model.addAttribute("searchResults", bookList);
-            return "/search/index";
+            return "search/index";
         } else {
             throw new EmptySearchException("Поиск по null невозможен");
         }
