@@ -191,7 +191,7 @@ public class BooksController {
     @GetMapping("/new")
     public String newBookPage(Model model) {
         model.addAttribute("newBook", new BookNewDto());
-        return "/books/new";
+        return "books/new";
     }
 
     @PostMapping("/new")
@@ -200,7 +200,7 @@ public class BooksController {
                               Model model) throws IOException, NoSupportFileException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("newBook", newBook);
-            return "/books/new";
+            return "books/new";
         }
         Book book = bookService.getBookFromBookNewDto(newBook);
         return REDIRECT_BOOKS_URL + book.getSlug();
