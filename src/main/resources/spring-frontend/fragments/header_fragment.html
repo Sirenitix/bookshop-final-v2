@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <body>
 <header class="Header" th:fragment="headFragment">
     <div class="Header-rowMain">
@@ -25,7 +24,7 @@
                     <div class="Header-search">
                         <div class="search">
                             <form class="form form_search" action="#" method="post" data-searchlimit="20"
-                            th:object="${searchWordDto}">
+                                  th:object="${searchWordDto}">
                                 <input class="search-input" id="query" name="query" type="text"
                                        placeholder="Search over 30 million book titles" th:field="*{example}" value=""/>
                                 <button class="search-button" type="submit" name="search" id="search">Поиск
@@ -49,8 +48,8 @@
                             </g>
                         </svg>
                         <span class="CartBlock-amount" th:text="${countPostponedBooks}">0</span></a><a class="CartBlock-block"
-                                                                      th:href="@{/cart}"
-                                                                      href="/cart.html">
+                                                                                                       th:href="@{/cart}"
+                                                                                                       href="/cart.html">
                         <svg class="CartBlock-img" xmlns="http://www.w3.org/2000/svg" width="30" height="23"
                              viewBox="0 0 30 23">
                             <g>
@@ -61,7 +60,7 @@
                             </g>
                         </svg>
                         <span class="CartBlock-amount" th:text="${countCartBooks}">0</span></a><a class="CartBlock-block" th:href="@{/my}"
-                                                                      href="/signin.html">
+                                                                                                  href="/signin.html">
                         <svg class="CartBlock-img" xmlns="http://www.w3.org/2000/svg" width="22" height="23"
                              viewBox="0 0 22 23">
                             <g>
@@ -86,20 +85,20 @@
         <div class="wrap">
             <nav class="menuModal" id="navigate">
                 <ul class="menu menu_main">
-                    <li class="menu-item"><a class="menu-link" href="/index.html" th:href="@{/}">Главная</a>
+                    <li class="menu-item"><a class="menu-link" href="/index.html" th:href="@{/}" th:text="#{topbar.main}">Главная</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/genres/index.html" th:href="@{/genres}">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" href="/genres/index.html" th:href="@{/genres}" th:text="#{topbar.genres}">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:href="@{/books/recent}">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:href="@{/books/recent}" th:text="#{topbar.news}">Новинки</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:href="@{/books/popular}">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:href="@{/books/popular}" th:text="#{topbar.popular}">Популярное</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/authors/index.html" th:href="@{/authors}">Авторы</a>
+                    <li class="menu-item"><a class="menu-link" href="/authors/index.html" th:href="@{/authors}" th:text="#{topbar.popular}">Авторы</a>
                     </li>
                     <th:block sec:authorize="isAuthenticated()">
-                    <li class="menu-item">
-                        <a class="menu-link" href="/books/popular.html" th:href="@{/books/viewed}">Просмотренные</a>
-                    </li>
+                        <li class="menu-item">
+                            <a class="menu-link" href="/books/popular.html" th:href="@{/books/viewed}">Просмотренные</a>
+                        </li>
                     </th:block>
                 </ul>
             </nav>

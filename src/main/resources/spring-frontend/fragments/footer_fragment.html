@@ -72,51 +72,59 @@
             </div>
             <div class="row-block">
                 <ul class="menu menu_vt Footer-menu">
-                    <li class="menu-item"><a class="menu-link" href="/index.html" th:href="@{/}">Главная</a>
+                    <li class="menu-item"><a class="menu-link" href="/index.html" th:href="@{/}" th:text="#{topbar.main}">Главная</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/genres/index.html" th:href="@{/genres}">Жанры</a>
+                    <li class="menu-item"><a class="menu-link" href="/genres/index.html" th:href="@{/genres}" th:text="#{topbar.genres}">Жанры</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:href="@{/books/recent}">Новинки</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/recent.html" th:href="@{/books/recent}" th:text="#{topbar.news}">Новинки</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:href="@{/books/popular}">Популярное</a>
+                    <li class="menu-item"><a class="menu-link" href="/books/popular.html" th:href="@{/books/popular}" th:text="#{topbar.popular}">Популярное</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/authors/index.html" th:href="@{/authors}">Авторы</a>
+                    <li class="menu-item"><a class="menu-link" href="/authors/index.html" th:href="@{/authors}" th:text="#{topbar.authors}">Авторы</a>
                     </li>
                 </ul>
             </div>
             <div class="row-block" sec:authorize="isAuthenticated()">
                 <ul class="menu menu_vt Footer-menu">
                     <li class="menu-item"><a class="menu-link" href="/my.html" th:href="@{/my}"
-                                             th:text="${'Мои книги (' + countMyBooks + ')'}">Мои книги (55)</a>
+                                             th:text="#{bottombar.mybook} + ${'(' + countMyBooks + ')'}">Мои книги (55)</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="/cart.html" th:href="@{/cart}"
-                                             th:text="${'Корзина (' + countCartBooks + ')'}">Корзина (7)</a>
+                                             th:text="#{bottombar.cart} + ${' (' + countCartBooks + ')'}">Корзина (7)</a>
                     </li>
                     <li class="menu-item"><a class="menu-link" href="/postponed.html" th:href="@{/postponed}"
-                                             th:text="${'Отложено (' + countPostponedBooks + ')'}">Отложено (2)</a>
+                                             th:text="#{bottombar.postpone} + ${'(' + countPostponedBooks + ')'}">Отложено (2)</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/profile.html" th:href="@{/profile}">Мой профиль</a>
+                    <li class="menu-item"><a class="menu-link" href="/profile.html" th:href="@{/profile}" th:text="#{bottombar.myprofile}">Мой профиль</a>
                     </li>
                 </ul>
             </div>
             <div class="row-block">
                 <ul class="menu menu_vt Footer-menu">
-                    <li sec:authorize="!isAuthenticated()" class="menu-item"><a class="menu-link" href="/signin.html"th:href="@{/signin}">Войти</a>
+                    <li sec:authorize="!isAuthenticated()" class="menu-item"><a class="menu-link" href="/signin.html"th:href="@{/signin}" th:text="#{bottombar.signin}" >Войти</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/documents/index.html" th:href="@{/documents}">Документы</a>
+                    <li class="menu-item"><a class="menu-link" href="/documents/index.html" th:href="@{/documents}" th:text="#{bottombar.doc}">Документы</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/about.html" th:href="@{/about}">О компании</a>
+                    <li class="menu-item"><a class="menu-link" href="/about.html" th:href="@{/about}" th:text="#{bottombar.about}">О компании</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/faq.html" th:href="@{/faq}">Помощь</a>
+                    <li class="menu-item"><a class="menu-link" href="/faq.html" th:href="@{/faq}" th:text="#{bottombar.help}">Помощь</a>
                     </li>
-                    <li class="menu-item"><a class="menu-link" href="/contacts.html" th:href="@{/contacts}">Контакты</a>
+                    <li class="menu-item"><a class="menu-link" href="/contacts.html" th:href="@{/contacts}" th:text="#{bottombar.contacts}" >Контакты</a>
+                    </li>
+                    <li class="menu-item">
+                        <span th:text="#{bottombar.selectlang}">Выбор языка</span>
+                        <select id="locales" style="width:50px;">
+                            <option value=" "></option>
+                            <option value="en">Қазақ тілі</option>
+                            <option value="ru">Русcкий</option>
+                        </select>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="Footer-copy">
-        <div class="wrap">© 2022 Bookshop Pty Ltd. ALL RIGHTS RESERVED
+        <div class="wrap" th:text="#{bottombar.rights}" >© 2022 Bookshop Pty Ltd. ALL RIGHTS RESERVED
         </div>
     </div>
 </footer>
