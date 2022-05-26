@@ -44,13 +44,13 @@ p.error-browser
 <div class="Middle">
     <div class="Middle-top">
         <div class="wrap">
-            <h1 class="Middle-title">Личный кабинет
+            <h1 class="Middle-title" th:text="#{profile.personal}" >Личный кабинет
             </h1>
         </div>
     </div>
     <div class="wrap">
         <div class="Block-rating">
-            <div class="Middle-rating rat">Мой рейтинг</div>
+            <div class="Middle-rating rat" th:text="#{profile.raiting}">Мой рейтинг</div>
             <span class="Rating-stars rat"><span
                     class="Rating-star Rating-star_view">
                           <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
@@ -99,7 +99,7 @@ p.error-browser
                           </svg></span></span>
         </div>
         <main class="Middle-main">
-            <h2 class="Middle-title">Мой профиль
+            <h2 class="Middle-title" th:text="#{profile.my}">Мой профиль
             </h2>
             <div class="Tabs Tabs_default">
                 <!--+Tabs-links([-->
@@ -109,12 +109,12 @@ p.error-browser
                 <!--], 'text', 0)-->
                 <div class="Tabs-links">
                     <a th:class="${part == null ? 'Tabs-link Tabs-link_ACTIVE' : 'Tabs-link'}"
-                       href="#basic" th:href="@{/profile}">Основные сведения</a>
+                       href="#basic" th:href="@{/profile}" th:text="#{profile.general}">Основные сведения</a>
                     <a class="Tabs-link"
                        th:class="${#strings.equals(part, 'transactionPart') ? 'Tabs-link Tabs-link_ACTIVE' : 'Tabs-link'}"
-                       href="#transactions" th:href="@{/profile(part='transactionPart')}">Историятранзакций</a>
+                       href="#transactions" th:href="@{/profile(part='transactionPart')}" th:text="#{profile.transaction}" >История транзакций</a>
                     <a th:class="${#strings.equals(part, 'topupPart') ? 'Tabs-link Tabs-link_ACTIVE' : 'Tabs-link'}"
-                       href="#topup" th:href="@{/profile(part='topupPart')}">Пополнить счет</a>
+                       href="#topup" th:href="@{/profile(part='topupPart')}" th:text="#{profile.fund}" >Пополнить счет</a>
                 </div>
                 <div class="Tabs-wrap">
                     <th:block th:if="${part == null}">
@@ -169,9 +169,9 @@ p.error-browser
 <!--                                            </div>-->
                                             <div class="form-group">
                                                 <div class="Profile-btn">
-                                                    <button class="btn btn_danger" type="button">Отменить
+                                                    <button class="btn btn_danger" type="button" th:text="#{profile.redo}" >Отменить
                                                     </button>
-                                                    <button class="btn btn_primary" type="submit">Сохранить
+                                                    <button class="btn btn_primary" type="submit" th:text="#{button.save}" >Сохранить
                                                     </button>
                                                 </div>
                                                 <div class="Profile-success" style="color: red"
@@ -196,11 +196,11 @@ p.error-browser
                                     <table class="table table_noMargin">
                                         <thead>
                                         <tr>
-                                            <th>Дата и время
+                                            <th th:text="#{profile.date}">Дата и время
                                             </th>
-                                            <th>Сумма
+                                            <th th:text="#{profile.amount}">Сумма
                                             </th>
-                                            <th>Описание
+                                            <th th:text="#{profile.desc}">Описание
                                             </th>
                                         </tr>
                                         </thead>
@@ -222,7 +222,7 @@ p.error-browser
                                     <a class="btn btn_primary Transactions-get" href="#"
                                        data-transactionoffset="0"
                                        data-transactionlimit="50"
-                                       data-transactionsort="asc">Показать еще</a>
+                                       data-transactionsort="asc" th:text="#{genrepage.showmore}">Показать еще</a>
                                 </div>
                             </div>
                         </div>
@@ -232,14 +232,14 @@ p.error-browser
                             <form class="form Topup" action="#" th:action="@{/payment}" method="post"
                                   data-sendHash="34534535">
                                 <div class="Topup-wrap">
-                                    <strong class="Topup-title">Введите сумму, на которую хотите пополнить свой счет:
+                                    <strong class="Topup-title" th:text="#{profile.want}">Введите сумму, на которую хотите пополнить свой счет:
                                     </strong>
                                     <div class="form-group form-group_row Topup-group">
                                         <input class="form-input" id="sum" name="sum" type="text"/><span>тенге</span>
                                     </div>
                                     <div class="form-group">
                                         <div class="Topup-btn">
-                                            <button class="btn btn_primary">Пополнить
+                                            <button class="btn btn_primary" th:text="#{profile.add}" >Пополнить
                                             </button>
                                         </div>
                                     </div>
