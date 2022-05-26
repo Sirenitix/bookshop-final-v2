@@ -65,7 +65,7 @@ p.error-browser
       <div class="Section">
         <div class="Cards Cards_refresh">
           <th:block th:replace="~{fragments/books_list :: bookListCart(${booksOfGenre})}"/>
-          <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#" data-refreshshow="genre" data-refreshoffset="0" data-refreshlimit="20" th:data-refreshid="${genre.id}">Показать еще</a>
+          <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#" data-refreshshow="genre" data-refreshoffset="0" data-refreshlimit="20" th:data-refreshid="${genre.id}" th:text="#{genrepage.showmore}" >Показать еще</a>
           </div>
         </div>
       </div>
