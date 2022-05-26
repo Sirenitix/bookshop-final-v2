@@ -44,8 +44,8 @@ p.error-browser
 <div class="Middle">
     <div class="wrap">
         <main class="Middle-main">
-            <h1 class="Middle-title">Отложенное</h1>
-            <h3 th:if="${isPostponedEmpty}">Отложенных книг нету 🙁</h3>
+            <h1 class="Middle-title" th:text="#{postpone.taked}" >Отложенное</h1>
+            <h3 th:if="${isPostponedEmpty}" th:text="#{postpone.empty}" >Отложенных книг нету 🙁</h3>
             <form class="form Cart Cart_postponed" action="#" method="post">
                 <div class="Cart-product" th:each="book : ${bookPostponed}">
                     <div class="Cart-block Cart-block_row">
@@ -112,7 +112,7 @@ p.error-browser
                                                 th:attr="data-bookid = ${book.slug},data-path = ${'postponed/cart/'}"
                                                 data-bookid="[1122]"><span class="btn-icon"><img
                                                 src="/assets/img/icons/shopping-basket.svg" alt="shopping-basket.svg"/></span><span
-                                                class="btn-content">Купить</span>
+                                                class="btn-content" th:text="#{book.buy}" >Купить</span>
                                         </button>
                                     </div>
                                     <div class="Cart-btn">
@@ -120,13 +120,13 @@ p.error-browser
                                                 th:attr="data-bookid = ${book.slug},data-path = ${'postponed/remove/'}"
                                                 data-bookid="[1122]"><span class="btn-icon"><img
                                                 src="/assets/img/icons/trash.svg" alt="trash.svg"/></span><span
-                                                class="btn-content">Удалить</span>
+                                                class="btn-content" th:text="#{postpone.delete}" >Удалить</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="Cart-block Cart-block_price">
-                                <div class="Cart-priceTitle">Цена:
+                                <div class="Cart-priceTitle" th:text="#{book.price}" >Цена:
                                 </div>
                                 <div class="Cart-price Cart-price_old" th:if="${book.priceOld != book.discountPrice}" th:text="${book.priceOld}">150 р.
                                 </div>
@@ -145,7 +145,7 @@ p.error-browser
                     <div class="Cart-block" th:if="${!isPostponedEmpty}">
                         <button class="btn btn_success btn_md Cart-buyAll" data-sendstatus="CART"
                                 th:attr="data-path = ${'postponed/cartAll/'}"
-                                data-bookid="[1111, 1122, 1133]">Купить все
+                                data-bookid="[1111, 1122, 1133]" th:text="#{postpone.buyall}" >Купить все
                         </button>
                     </div>
                 </div>
