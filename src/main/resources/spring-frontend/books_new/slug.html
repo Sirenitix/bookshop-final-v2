@@ -45,9 +45,9 @@
     <div class="wrap" th:unless="${bookRemoved}">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/spring-frontend/genres}">Книги</a>
+                <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}" th:text="#{recentpage.books}" >Книги</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current" th:text="${slugBook.title}">
                     <span>Мара и морок</span>
@@ -75,7 +75,7 @@
                         <div class="ProductCard-header">
                             <h1 class="ProductCard-title" th:text="${slugBook.title}">Мара и морок
                             </h1>
-                            <div class="ProductCard-author"><span class="ProductCard-titleProp">Автор:</span>&#32;
+                            <div class="ProductCard-author"><span class="ProductCard-titleProp"  >Автор:</span>&#32;
                                 <a href="#" th:if="${authorsOfBook.isEmpty()}" th:text="${'unknown'}"></a>
                                 <th:block th:unless="${authorsOfBook.isEmpty()}" th:each="author : ${authorsOfBook}">
                                 <a href="#" th:href="@{'/authors/' + ${author.slug}}" th:text="${author.name}">Лия Арден</a>
@@ -135,7 +135,7 @@
                                     <div class="modal modal_compression modal_dropdown">
                                         <div class="modal-window"><a class="modal-close"
                                                                      href="#"><span></span><span></span></a>
-                                            <strong class="modal-title">Распределение оценок
+                                            <strong class="modal-title" th:text="#{book.mark}" >Распределение оценок
                                             </strong>
                                             <div class="RatingGroup"><span class="Rating"><span
                                                     class="Rating-stars"><span class="Rating-star Rating-star_view">
@@ -413,14 +413,14 @@
                         </svg></span>
                       <input name="rating" type="radio" value="5"/></span></span>
                             </div>
-                            <div class="ProductCard-tags"><span class="ProductCard-titleProp">Тэги:</span>
+                            <div class="ProductCard-tags"><span class="ProductCard-titleProp" th:text="#{book.tag}" >Тэги:</span>
                                 <a href="#" th:if="${slugBook.tags.isEmpty()}" th:text="${'do not have tags'}"></a>
                                 <th:block th:unless="${slugBook.tags.isEmpty()}" th:each="tag : ${slugBook.tags}">
                                     <a href="/tags/" th:href="@{/tags(tag=${tag.id})}"
                                        th:text="${tag.name}">Современные</a>&#32;
                                 </th:block>
                             </div>
-                            <div class="ProductCard-cost"><span class="ProductCard-titleProp">Цена:</span>
+                            <div class="ProductCard-cost"><span class="ProductCard-titleProp" th:text="#{book.price}" >Цена:</span>
                                 <span th:if="${slugBook.priceOld != slugBook.discountPrice()}" class="ProductCard-priceOld" th:text="${slugBook.priceOld}">₽300</span><span
                                     class="ProductCard-price"
                                     th:text="${slugBook.discountPrice()}">₽180</span>
@@ -447,7 +447,7 @@
                         </div>
                         <div sec:authorize="hasAuthority('ADMIN')" id="editInput">
 <!--                        <div id="editInput">-->
-                            <p>Отредактируйте</p>
+                            <p >Отредактируйте</p>
                             <form class="form" th:action="@{'/books/edit/' + ${slugBook.slug}}" method="post">
                                 <div class="form-group">
                                     <textarea class="form-textarea" name="editText" id="edit"
@@ -490,9 +490,19 @@
                                         data-btntype="check" data-btnradio="buyblock" data-check="false"
                                         data-alttext="Отложена">
                                     <span class="btn-icon"><img
-                                            src="/assets/img/icons/heart.svg" alt="heart.svg"/></span><span
-                                        class="btn-content"
-                                        th:text="${statusOfSlugBook.equals('KEPT') ? 'Отложена' : 'Отложить'}">Отложить</span>
+                                            src="/assets/img/icons/heart.svg" alt="heart.svg"/></span>
+<!--                                    <span class="btn-content"-->
+<!--                                        th:text="${statusOfSlugBook.equals('KEPT') ? 'Отложена' : 'Отложить'}">Отложить</span>-->
+                                    <div th:if="${statusOfSlugBook.equals('KEPT')}">
+                                        <span class="btn-content"
+                                              th:text="#{book.take}">Отложить</span>
+                                    </div>
+                                    <div th:unless="${statusOfSlugBook.equals('KEPT')}">
+                                             <span class="btn-content"
+                                                   th:text="#{book.taked}">Отложить</span>
+                                    </div>
+
+
                                 </button>
                             </div>
                             <div class="ProductCard-cartElement">
@@ -505,14 +515,14 @@
                                         src="/assets/img/icons/shopping-basket.svg"
                                         alt="shopping-basket.svg"/></span>
                                     <span
-                                            class="btn-content">Купить</span>
+                                            class="btn-content" th:text="#{book.buy}" >Купить</span>
                                 </button>
                                 <a th:if="${statusOfSlugBook.equals('CART')}" th:href="@{/cart}"
                                    class="btn btn_primary btn_outline">
                                 <span class="btn-icon"><img
                                         src="/assets/img/icons/shopping-basket.svg"
                                         alt="shopping-basket.svg"/></span>
-                                    <span class="btn-content">В корзине</span>
+                                    <span class="btn-content" th:text="#{book.cart}" >В корзине</span>
 
                                 </a>
                             </div>
@@ -524,7 +534,7 @@
                                 <a id="btn_download" class="btn btn_primary btn_outline" href="#"><span
                                         class="btn-icon"><img src="/assets/img/icons/download.svg"
                                                               alt="download.svg"/></span><span
-                                        class="btn-content">Скачать</span></a>
+                                        class="btn-content" th:text="#{book.load}" >Скачать</span></a>
                             </div>
                             <div th:if="${statusOfSlugBook.equals('PAID')}" class="ProductCard-cartElement">
                                 <button class="btn btn_primary btn_outline" data-sendstatus="ARCHIVED"
@@ -532,7 +542,7 @@
                                         data-bookid="[1111]" data-btntype="check" data-btnradio="buyblock"
                                         data-check="false" data-alttext="Вернуть из архива"><span class="btn-icon"><img
                                         src="/assets/img/icons/archive.svg" alt="archive.svg"/></span><span
-                                        class="btn-content">В архив</span>
+                                        class="btn-content" th:text="#{book.arch}" >В архив</span>
                                 </button>
                             </div>
                             <div th:if="${statusOfSlugBook.equals('ARCHIVED')}" class="ProductCard-cartElement">
@@ -541,12 +551,12 @@
                                             type="submit" name="slug"
                                             th:value="${slugBook.slug}"><span class="btn-icon"><img
                                             src="/assets/img/icons/archive.svg" alt="archive.svg"/></span><span
-                                            class="btn-content">Вернуть из архива</span></button>
+                                            class="btn-content" th:text="#{book.fromarch}" >Вернуть из архива</span></button>
                                 </form>
                             </div>
                         </div>
                         <div id="myPopup" sec:authorize="isAuthenticated()" th:if="${statusOfSlugBook.equals('PAID')}">
-                            <p>Ссылки для скачивания</p>
+                            <p th:text="#{book.loadlink}" >Ссылки для скачивания</p>
                             <div th:each="bookFile : ${slugBook.getBookFileList()}">
                                 <a href="#" th:href="${'/books/download/' + bookFile.hash}"
                                    th:text="${bookFile.getBookFileExtensionString()}"></a>
@@ -564,8 +574,8 @@
                 </div>
                 <div class="Product-comments">
                     <div class="Product-comments-header">
-                        <h3 class="Product-comments-title">Отзывы
-                        </h3><span class="Product-comments-amount" th:text="${slugBook.getBookReviews().size() + ' отзывов'}">567 отзывов</span>
+                        <h3 class="Product-comments-title" th:text="#{book.review}" >Отзывы
+                        </h3><span class="Product-comments-amount" th:text="${slugBook.getBookReviews().size()} + ' '  + #{book.reviews}">567 отзывов</span>
                     </div>
                 </div>
                 <div class="Comments">
