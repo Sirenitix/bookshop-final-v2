@@ -45,16 +45,16 @@ p.error-browser
 <div class="Middle">
     <div class="Middle-top">
         <div class="wrap">
-            <h1 class="Middle-title">Документ
+            <h1 class="Middle-title" th:text="#{bottombar.doc}">Документ
             </h1>
         </div>
     </div>
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/documents/index.html" th:href="@{/documents}">Документы</a>
+                <li class="breadcrumbs-item"><a href="/documents/index.html" th:href="@{/documents}" th:text="#{bottombar.doc}" >Документы</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current" th:text="${document.title}"><span>Политика обработки персональных данных</span>
                 </li>

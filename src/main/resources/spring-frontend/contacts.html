@@ -43,16 +43,16 @@
   <div class="Middle">
     <div class="Middle-top">
       <div class="wrap">
-        <h1 class="Middle-title">Контакты
+        <h1 class="Middle-title" th:text="#{bottombar.contacts}" >Контакты
         </h1>
       </div>
     </div>
     <div class="wrap">
       <main class="Middle-main">
         <ul class="breadcrumbs">
-          <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+          <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
           </li>
-          <li class="breadcrumbs-item breadcrumbs-item_current"><span>Контакты</span>
+          <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="#{bottombar.contacts}"  >Контакты</span>
           </li>
         </ul>
         <div class="Contacts">
@@ -75,23 +75,23 @@
             </div>
             <div class="row-block">
               <div class="Contacts-form">
-                <h2>Напишите нам:
+                <h2 th:text="#{cont.cont}" >Напишите нам:
                 </h2>
                 <form class="form" action="#" method="post" th:object="${messageDto}">
                   <div class="form-group" sec:authorize="!isAuthenticated()">
-                    <input class="form-input" id="name" name="name" type="text" th:field="*{name}" placeholder="Введите Имя" data-validate="require"/>
+                    <input class="form-input" id="name" name="name" type="text" th:field="*{name}" th:placeholder="#{signup.name}" placeholder="Введите Имя" data-validate="require"/>
                   </div>
                   <div class="form-group" sec:authorize="!isAuthenticated()">
-                    <input class="form-input form-input_mail" id="mail" name="mail" type="text" th:field="*{email}" placeholder="Введите e-mail" data-validate="mail require"/>
+                    <input class="form-input form-input_mail" id="mail" name="mail" type="text" th:field="*{email}" th:placeholder="#{signin.plemail}" placeholder="Введите e-mail" data-validate="mail require"/>
                   </div>
                   <div class="form-group">
-                    <input class="form-input" id="topic" name="topic" type="text" th:field="*{subject}" placeholder="Введите тему" data-validate="require"/>
+                    <input class="form-input" id="topic" name="topic" type="text" th:field="*{subject}" th:placeholder="#{cont.title}" placeholder="Введите тему" data-validate="require"/>
                   </div>
                   <div class="form-group">
-                    <textarea class="form-input" name="message" id="message" th:field="*{text}" placeholder="Введите сообщение" data-validate="require"></textarea>
+                    <textarea class="form-input" name="message" id="message" th:field="*{text}" th:placeholder="#{cont.enter}" placeholder="Введите сообщение" data-validate="require"></textarea>
                   </div>
                   <div class="form-group">
-                    <button class="btn btn_primary form-btn" type="submit" name="sendMessage" id="sendMessage">Отправить
+                    <button class="btn btn_primary form-btn" type="submit" name="sendMessage" id="sendMessage" th:text="#{cont.send}" >Отправить
                     </button>
                   </div>
                 </form>

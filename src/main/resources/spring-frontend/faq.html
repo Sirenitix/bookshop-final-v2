@@ -44,15 +44,15 @@
     <div class="wrap">
       <main class="Middle-main">
         <ul class="breadcrumbs">
-          <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+          <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
           </li>
-          <li class="breadcrumbs-item breadcrumbs-item_current"><span>Помощь</span>
+          <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="#{bottombar.help}" >Помощь</span>
           </li>
         </ul>
-        <h1 class="Middle-title">Помощь
+        <h1 class="Middle-title" th:text="#{bottombar.help}" >Помощь
         </h1>
         <div class="FAQ">
-          <strong class="FAQ-title">Наиболее частые вопросы:
+          <strong class="FAQ-title" th:text="#{faq.ques}" >Наиболее частые вопросы:
           </strong>
           <th:block th:each="faq : ${faqs}">
           <div class="HideBlock FAQ-block">
@@ -71,7 +71,7 @@
           </div>
           </th:block>
           <div class="FAQ-footer">
-            <p class="FAQ-link">Или&#32;<a href="/contacts.html" th:href="@{/contacts}">свяжитесь с нами</a>
+            <p class="FAQ-link">Или&#32;<a href="/contacts.html" th:href="@{/contacts}" th:text="#{faq.cont}" >свяжитесь с нами</a>
             </p>
           </div>
         </div>
