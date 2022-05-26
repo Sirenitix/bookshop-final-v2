@@ -169,8 +169,8 @@ p.error-browser
                 <footer th:unless="${booksOfAuthor.isEmpty()}" class="Section-footer"><a class="Author-books"
                                                                                          th:href="@{'/books/author/' + ${author.slug}}"
                                                                                          href="/books/author.html" th:text="#{authorslug.all}" >Все
-                    книги автора<span
-                            class="Author-amount" th:text="${'(' + booksOfAuthor.size() + ')'}">(55)</span></a>
+                    книги автора</a><span
+                        class="Author-amount" th:text="${'(' + booksOfAuthor.size() + ')'}">(55)</span>
                 </footer>
             </div>
         </main>

@@ -36,9 +36,9 @@
     <div class="wrap">
       <main class="Middle-main">
         <ul class="breadcrumbs">
-          <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+          <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
           </li>
-          <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}">Книги</a>
+          <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}" th:text="#{recentpage.books}" >Книги</a>
           </li>
           <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="${author.name}">Борис Васильевич Бедный</span>
           </li>
@@ -50,7 +50,7 @@
             <th:block th:replace="~{fragments/books_list :: bookListCart(${booksOfAuthor})}"/>
             <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#" data-refreshshow="author" data-refreshoffset="0" data-refreshlimit="20"
                                                              th:attr="data-refreshid = ${author.slug}"
-                                                             data-refreshid="10">Показать еще</a>
+                                                             data-refreshid="10" th:text="#{genrepage.showmore}" >Показать еще</a>
             </div>
           </div>
         </div>
