@@ -45,10 +45,10 @@ public class BookWithAuthorsDto {
     @JsonGetter("authors")
     public String authorsName() {
         if (authorList.isEmpty()) {
-            return "unknown";
+            return "Белгісіз";
         }
         return authorList.size() == 1 ?
                 authorList.get(0).getName() :
-                authorList.get(0).getName() + " и другие";
+                authorList.get(0).getName() + " және басқалар";
     }
 }

@@ -96,7 +96,7 @@ public class MainPageController {
             model.addAttribute("searchResults", bookList);
             return "search/index";
         } else {
-            throw new EmptySearchException("Поиск по null невозможен");
+            throw new EmptySearchException("Кітап атауын енгізіңіз");
         }
     }
 
