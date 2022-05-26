@@ -114,9 +114,18 @@ p.error-browser
             </article>
             <div class="Section">
                 <header class="Section-header">
-                    <h2 class="Section-title"
-                        th:text="${booksOfAuthor.isEmpty() ? #{authorslug.empty} :#{authorslug.exist}}">Книги автора
-                    </h2>
+
+                    <div th:if="${booksOfAuthor.isEmpty()}">
+                        <h2 class="Section-title"
+                            th:text="#{authorslug.empty}">Книги автора
+                        </h2>
+                    </div>
+                    <div th:unless="${booksOfAuthor.isEmpty()}">
+                        <h2 class="Section-title"
+                            th:text="#{authorslug.exist}">Книги автора
+                        </h2>
+                    </div>
+
                 </header>
                 <div class="Slider Slider_carousel" th:unless="${booksOfAuthor.isEmpty()}">
                     <div class="Slider-box Cards">
