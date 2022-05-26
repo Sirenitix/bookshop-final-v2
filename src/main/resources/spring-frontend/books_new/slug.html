@@ -468,7 +468,7 @@
                                 <span class="btn-icon">
                                     <img src="/assets/img/icons/arrow_hide.svg" alt="shopping-basket.svg"/>
                                 </span>
-                                    <span class="btn-content">Редактировать</span>
+                                    <span class="btn-content" th:text="#{button.edit}" >Редактировать</span>
                                 </a>
                             </div>
                             <div class="ProductCard-cartElement">
@@ -476,7 +476,7 @@
                                 <span class="btn-icon">
                                     <img src="/assets/img/icons/trash.svg" alt="shopping-basket.svg"/>
                                 </span>
-                                    <span class="btn-content">Удалить</span>
+                                    <span class="btn-content" th:text="#{postpone.delete}" >Удалить</span>
                                 </a>
                             </div>
                         </div>
@@ -580,7 +580,7 @@
                 </div>
                 <div class="Comments">
                     <th:block sec:authorize="isAuthenticated()">
-                        <strong class="Comments-title">Написать отзыв
+                        <strong class="Comments-title" th:text="#{book.addreview}" >Написать отзыв
                         </strong>
                         <div class="Comments-addComment">
                             <form class="form" action="#" method="post"
@@ -591,7 +591,7 @@
                                               placeholder="Текст отзыва" data-validate="require"></textarea>
                                 </div>
                                 <div class="form-group Comments-sendReview">
-                                    <button class="btn btn_warning" type="submit">Отправить отзыв
+                                    <button class="btn btn_warning" type="submit" th:text="#{book.sendreview}" >Отправить отзыв
                                     </button>
                                 </div>
                             </form>
@@ -698,7 +698,7 @@
                                         </div>
                                         <div class="divLike" sec:authorize="hasAuthority('ADMIN')">
                                             <a style="margin-left: 750px" class="btn btn_warning"
-                                               th:href="@{'/books/' + ${slugBook.slug} + '/review/remove/' + ${review.id}}">Удалить
+                                               th:href="@{'/books/' + ${slugBook.slug} + '/review/remove/' + ${review.id}}" th:text="#{postpone.delete}" >Удалить
                                             </a>
                                         </div>
                                     </div>
