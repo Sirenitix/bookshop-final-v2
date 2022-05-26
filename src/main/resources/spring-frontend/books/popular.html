@@ -44,20 +44,20 @@ p.error-browser
   <div class="wrap">
     <main class="Middle-main">
       <ul class="breadcrumbs">
-        <li class="breadcrumbs-item"><a th:href="@{/}">Главная</a>
+        <li class="breadcrumbs-item"><a th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
         </li>
-        <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}">Книги</a>
+        <li class="breadcrumbs-item"><a href="/genres/index.html" th:href="@{/genres}" th:text="#{recentpage.books}" >Книги</a>
         </li>
-        <li class="breadcrumbs-item breadcrumbs-item_current"><span>Популярное</span>
+        <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="#{topbar.popular}" >Популярное</span>
         </li>
       </ul>
       <div class="Section">
         <div class="Section-header">
-          <h1 class="Section-title">Популярное</h1>
+          <h1 class="Section-title" th:text="#{topbar.popular}" >Популярное</h1>
         </div>
         <div class="Cards Cards_refresh">
           <th:block th:replace="~{fragments/books_list :: bookListCart(${popularBooks})}"/>
-          <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#" data-refreshshow="popular" data-refreshoffset="0" data-refreshlimit="20">Показать еще</a>
+          <div class="Cards-footer Cards-footer_center"><a class="btn btn_primary" href="#" data-refreshshow="popular" data-refreshoffset="0" data-refreshlimit="20" th:text="#{genrepage.showmore}" >Показать еще</a>
           </div>
         </div>
       </div>
