@@ -48,7 +48,7 @@ p.error-browser
         <main class="Middle-main">
             <div class="Section">
                 <div class="Section-header">
-                    <h2 class="Section-title">Рекомендуемое
+                    <h2 class="Section-title" th:text="#{mainpage.recom}" >Рекомендуемое
                     </h2>
                 </div>
                 <div class="Slider Slider_carousel">
@@ -65,7 +65,7 @@ p.error-browser
                     </div>
                 </div>
                 <div class="Section-header">
-                    <h2 class="Section-title">Новинки
+                    <h2 class="Section-title" th:text="#{mainpage.new}" >Новинки
                     </h2>
                 </div>
                 <div class="Slider Slider_carousel">
@@ -82,7 +82,7 @@ p.error-browser
                     </div>
                 </div>
                 <div class="Section-header">
-                    <h2 class="Section-title">Популярное
+                    <h2 class="Section-title" th:text="#{mainpage.pop}" >Популярное
                     </h2>
                 </div>
                 <div class="Slider Slider_carousel">
@@ -99,7 +99,7 @@ p.error-browser
                     </div>
                 </div>
             </div>
-            <h2 class="Middle-title">Книги по тегам
+            <h2 class="Middle-title" th:text="#{mainpage.tag}" >Книги по тегам
             </h2>
             <div class="Tags" id="tags">
                 <th:block th:each="tag : ${tags}">
