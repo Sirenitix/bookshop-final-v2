@@ -45,21 +45,21 @@ p.error-browser
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/profile.html" th:href="@{/profile}">Мой профиль</a>
+                <li class="breadcrumbs-item"><a href="/profile.html" th:href="@{/profile}" th:text="#{bottombar.myprofile}" >Мой профиль</a>
                 </li>
-                <li class="breadcrumbs-item breadcrumbs-item_current"><span>Мои книги</span>
+                <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="#{book.my}">Мои книги</span>
                 </li>
             </ul>
             <div class="Section">
                 <div class="Section-header">
-                    <h1 class="Section-title">Мои книги</h1>
-                    <div class="Section-header-links"><span class="Section-header-link Section-header-link_ACTIVE">Непрочитанные</span><a
+                    <h1 class="Section-title" th:text="#{book.my}" >Мои книги</h1>
+                    <div class="Section-header-links"><span class="Section-header-link Section-header-link_ACTIVE" th:text="#{book.unread}" >Непрочитанные</span><a
                             class="Section-header-link" href="/myarchive.html" th:href="@{/myarchive}">Архив</a>
                     </div>
                 </div>
-                <h4 th:if="${paidBooks.isEmpty()}">Купленных книг нету</h4>
+                <h4 th:if="${paidBooks.isEmpty()}" th:text="#{my.empty}">Купленных книг нету</h4>
                 <div class="Cards" th:unless="${paidBooks.isEmpty()}">
                     <th:block th:replace="~{fragments/books_list :: bookListCart(${paidBooks})}"/>
                 </div>
