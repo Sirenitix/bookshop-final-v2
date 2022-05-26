@@ -44,9 +44,9 @@ p.error-browser
   <div class="wrap">
     <main class="Middle-main">
       <ul class="breadcrumbs">
-        <li class="breadcrumbs-item"><a th:href="@{/}">Главная</a>
+        <li class="breadcrumbs-item"><a th:href="@{/}" th:text="#{topbar.main}">Главная</a>
         </li>
-        <li class="breadcrumbs-item"><a th:href="@{/genres}">Жанры</a>
+        <li class="breadcrumbs-item"><a th:href="@{/genres}" th:text="#{topbar.genres}">Жанры</a>
         </li>
         <li class="breadcrumbs-item" th:if="${secondParent}"><a href="/genres/index.html"
                                                                 th:href="@{'/genres/' + ${secondParent.slug}}"
