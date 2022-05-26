@@ -47,9 +47,9 @@ p.error-browser
     <div class="wrap">
         <main class="Middle-main">
             <ul class="breadcrumbs">
-                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}">Главная</a>
+                <li class="breadcrumbs-item"><a href="/index.html" th:href="@{/}" th:text="#{topbar.main}" >Главная</a>
                 </li>
-                <li class="breadcrumbs-item"><a href="/authors/index.html" th:href="@{/authors}">Авторы</a>
+                <li class="breadcrumbs-item"><a href="/authors/index.html" th:href="@{/authors}" th:text="#{topbar.authors}" >Авторы</a>
                 </li>
                 <li class="breadcrumbs-item breadcrumbs-item_current"><span th:text="${author.name}">Борис Васильевич Бедный</span>
                 </li>
@@ -90,7 +90,7 @@ p.error-browser
                                               data-validate="require" th:text="${author.description}"></textarea>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn_warning" type="submit">Сохранить
+                                <button class="btn btn_warning" type="submit" th:text="#{button.save}" >Сохранить
                                 </button>
                             </div>
                         </form>
@@ -100,13 +100,13 @@ p.error-browser
                     <div class="Spoiler-hide">
                     </div>
                     <div class="Spoiler-footer">
-                        <button class="Spoiler-trigger btn btn_primary btn_nr" type="button" data-showtext="Свернуть"
-                                data-hidetext="Показать полностью">
-                        </button>
+<!--                        <button class="Spoiler-trigger btn btn_primary btn_nr" type="button" data-showtext="Свернуть"-->
+<!--                                data-hidetext="Показать полностью">-->
+<!--                        </button>-->
                         <div sec:authorize="hasAuthority('ADMIN')" style="margin-left: 25px"
                              class="ProductCard-cartElement">
                             <a id="btn_edit" href="#" class="btn btn_primary btn_nr">
-                                <span class="btn-content">Редактировать</span>
+                                <span class="btn-content" th:text="#{button.edit}" >Редактировать</span>
                             </a>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ p.error-browser
             <div class="Section">
                 <header class="Section-header">
                     <h2 class="Section-title"
-                        th:text="${booksOfAuthor.isEmpty() ? 'У автора нет книг' : 'Книги автора'}">Книги автора
+                        th:text="${booksOfAuthor.isEmpty() ? #{authorslug.empty} :#{authorslug.exist}}">Книги автора
                     </h2>
                 </header>
                 <div class="Slider Slider_carousel" th:unless="${booksOfAuthor.isEmpty()}">
@@ -159,7 +159,7 @@ p.error-browser
                 </div>
                 <footer th:unless="${booksOfAuthor.isEmpty()}" class="Section-footer"><a class="Author-books"
                                                                                          th:href="@{'/books/author/' + ${author.slug}}"
-                                                                                         href="/books/author.html">Все
+                                                                                         href="/books/author.html" th:text="#{authorslug.all}" >Все
                     книги автора<span
                             class="Author-amount" th:text="${'(' + booksOfAuthor.size() + ')'}">(55)</span></a>
                 </footer>
